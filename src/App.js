@@ -26,12 +26,15 @@ class App extends Component {
       console.log('error fetching candidates...', err)
     }
 
-    API.graphql(graphqlOperation(subscriptions.onCastVote)).subscribe({
+    API.graphql({
+      query: subscriptions.onCastVote,
+      variables: {}
+    }).subscribe({
       next: (voteCasted) => {
         const id = voteCasted.value.data.onCastVote.id
         const votes = voteCasted.value.data.onCastVote.votes
         const candidates = this.state.candidates
-        const row = candidates.find( candidate => candidate.id === id );
+        const row = candidates.find(candidate => candidate.id === id);
         row.votes = votes;
         this.setState({ votes: candidates });
         console.log("state:", this.state.candidates)
@@ -46,7 +49,7 @@ class App extends Component {
         <div className="container mx-auto md:w-3/5 px-3">
           <div className="text-grey-darkest md:text-lg italic mt-2 mb-3">Which is your favourite AWS serverless service?</div>
           <div className="flex py-2">
-            { this.state.candidates.map((candidate,idx) =>
+            {this.state.candidates.map((candidate, idx) =>
               <Candidate
                 key={candidate.id}
                 id={candidate.id}
@@ -70,22 +73,22 @@ class Chart extends Component {
   render() {
     const fontStack = '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
     const data = {
-      labels: this.props.data.map((candidate) => ( candidate.name )),
+      labels: this.props.data.map((candidate) => (candidate.name)),
       datasets: [{
         label: false,
-        data: this.props.data.map((candidate) => ( candidate.votes )),
+        data: this.props.data.map((candidate) => (candidate.votes)),
         backgroundColor: ['#CC1F1A', '#DE751F', '#1F9D55', '#2779BD']
       }]
     };
     const options = {
-      title:     { display: false },
-      legend:    { display: false },
-      tooltips:  { enabled: false },
+      title: { display: false },
+      legend: { display: false },
+      tooltips: { enabled: false },
       responsive: true,
-      layout:    { padding: { top: 10 } },
+      layout: { padding: { top: 10 } },
       scales: {
-        xAxes: [{gridLines: {display: false }, ticks: {fontStyle: 'bold', fontColor: '#3D4852', fontFamily: fontStack}}],
-        yAxes: [{ticks: {beginAtZero: true, maxTicksLimit: 6, fontStyle: 'normal', fontColor: '#3D4852', fontFamily: fontStack}}]
+        xAxes: [{ gridLines: { display: false }, ticks: { fontStyle: 'bold', fontColor: '#3D4852', fontFamily: fontStack } }],
+        yAxes: [{ ticks: { beginAtZero: true, maxTicksLimit: 6, fontStyle: 'normal', fontColor: '#3D4852', fontFamily: fontStack } }]
       }
     }
     return (
@@ -99,7 +102,7 @@ class Candidate extends Component {
     const castVote = {
       id: event.id
     };
-    await API.graphql(graphqlOperation(mutations.castVote, {input: castVote}));
+    await API.graphql(graphqlOperation(mutations.castVote, { input: castVote }));
   };
 
   render() {

@@ -1,0 +1,14 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "voterocket-dev-20210428112811-authRole",
+            "UnauthRoleArn": "arn:aws:iam::735613878458:role/voterocket-dev-20210428112811-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::735613878458:role/voterocket-dev-20210428112811-authRole",
+            "Region": "ap-south-1",
+            "DeploymentBucketName": "voterocket-dev-20210428112811-deployment",
+            "UnauthRoleName": "voterocket-dev-20210428112811-unauthRole",
+            "StackName": "voterocket-dev-20210428112811",
+            "StackId": "arn:aws:cloudformation:ap-south-1:735613878458:stack/voterocket-dev-20210428112811/b6c0fdf0-a7e6-11eb-9550-06b3c3114c46"
+        }
+    }
+}

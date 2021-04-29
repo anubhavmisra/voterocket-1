@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "aws-amplify": "^3.3.27",
-    "aws-amplify-react": "^4.2.31",
     "chart.js": "^2.8.0",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
